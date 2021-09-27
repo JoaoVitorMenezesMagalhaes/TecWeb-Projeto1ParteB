@@ -1,0 +1,57 @@
+{% extends "notes/base.html" %}
+{% load static %}
+{% block content %}
+<div class=appbar>
+  <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
+  <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+</div>
+<main class="container">
+  <form method="post" class="form-card">
+    {% csrf_token %}
+    <input class="form-card-title" id="tag" type="text" name="tag" placeholder="Adicione uma Tag"/>
+    <input class="form-card-title" id="titulo" type="text" name="titulo" placeholder="TÍtulo"/>
+    <textarea class="autoresize" id="detalhes" name="detalhes" placeholder="Digite o conteúdo..."></textarea>
+    <button class="btn" type="submit">Criar</button>
+  </form>
+</main>
+
+<div class="card-container">
+  {% for note in notes %}
+  <div class="card">
+    <p class="card-tag">{{note.tag}}</p>
+    <p class="card-title">{{ note.title }}</p>
+    <p class="card-content">{{ note.content }}</p>
+    <form method="post" action="{% url 'deletar' id=note.id %}" >
+      {% csrf_token %}
+      <button>Deletar</button>
+    </form>
+      <button type="button" value="{{note.id}}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Editar</button>
+  </div>
+  {% endfor %}
+
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form method="post" action="">
+          {% csrf_token %}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <input class="modal-title" id="ntitulo" type="text" name="ntitulo" placeholder="Novo título"/>
+        </div>
+        <div class="modal-body">
+          <textarea class="modal-body" id="ndetalhes" name="ndetalhes" placeholder="Digite o conteúdo..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-ze">Editar</button>
+          <!--<button type="button" class="btn btn-default" data-dismiss="modal">Editar</button>-->
+        </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
