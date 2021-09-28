@@ -5,6 +5,11 @@
   <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
   <span class="subtitle">Como o Post-it, mas com outro verbo</span>
 </div>
+
+<div>
+  <a class="btn btn-info btn-sm" href="{% url 'tag'%}">Tags</a>
+</div>
+
 <main class="container">
   <form method="post" class="form-card">
     {% csrf_token %}
@@ -18,15 +23,19 @@
 <div class="card-container">
   {% for note in notes %}
   <div class="card">
-    <p class="card-tag">{{note.tag}}</p>
-    <p class="card-title">{{ note.title }}</p>
+    <div class="cd">
+      <p class="card-title">{{note.tag}}</p>
+      <p class="card-title">{{ note.title }}</p>
+    </div>
     <p class="card-content">{{ note.content }}</p>
-    <form method="post" action="{% url 'deletar' id=note.id %}" >
+    <div class="bt">
+      <form method="post" action="{% url 'deletar' id=note.id %}" >
       {% csrf_token %}
-      <button>Deletar</button>
+      <button class="btn btn-info btn-sm">Deletar</button>
     </form>
-      <button type="button" value="{{note.id}}" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Editar</button>
-  </div>
+      <button type="button" value="{{note.id}}" class="btn btn-info btn-sm" style="margin-left: 5px" data-toggle="modal" data-target="#myModal">Editar</button>
+    </div>
+    </div>
   {% endfor %}
 
 
@@ -37,6 +46,10 @@
       <div class="modal-content">
         <form method="post" action="">
           {% csrf_token %}
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <input class="modal-title" id="ntag" type="text" name="ntag" placeholder="Nova Tag"/>
+        </div>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <input class="modal-title" id="ntitulo" type="text" name="ntitulo" placeholder="Novo título"/>

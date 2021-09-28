@@ -93,13 +93,13 @@ body {
 }
 
 .card-title{
-  font-size: 14px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 .card-content{
   margin: 5px;
-  font-size: 7px;
+  font-size: 12px;
   align-self: center;
   margin-top: 20px;
   justify-content: flex-end;
@@ -202,4 +202,42 @@ body {
   padding-top: 120%;
 
   transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+
+.bt{
+  display:flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.cd{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.tag{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4%;
+}
+
+.bttag {
+  font-family: 'Permanent Marker', cursive;
+  background-color: #f7d736;
+  margin-right: 5px;
+  font-size: 150%;
+}
+
+.tags{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 300%;
+  font-family: 'Permanent Marker', cursive;
+  margin-top: 4%;
 }
